@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Jedi Mind Tricks</title>
+  <title>New Ways to Consume Information - Jedi Mind Tricks</title>
   <meta name="author" content="Korey Aaronson">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sarkk.github.io/">
+  <link rel="canonical" href="http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Jedi Mind Tricks" type="application/atom+xml">
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/10/21/new-ways-to-consume-information/">New Ways to Consume Information</a></h1>
+      <h1 class="entry-title">New Ways to Consume Information</h1>
     
     
       <p class="meta">
@@ -87,7 +84,7 @@
   </header>
 
 
-  <div class="entry-content"><p>After using puts to no end, I was curious to see what interesting (and practical) ways there are out there to output and consume information in Ruby. Inspired by a project idea from Avi, I looked into Twilio, a company that &ldquo;allows software developers to programmatically make and receive phone calls and send and receive text messages using its web service APIs&rdquo;. (Wikipedia)</p>
+<div class="entry-content"><p>After using puts to no end, I was curious to see what interesting (and practical) ways there are out there to output and consume information in Ruby. Inspired by a project idea from Avi, I looked into Twilio, a company that &ldquo;allows software developers to programmatically make and receive phone calls and send and receive text messages using its web service APIs&rdquo;. (Wikipedia)</p>
 
 <p>After signing up for an account and trial phone number on their website, it was easy to find documentation for their different APIs. I don&rsquo;t think they could have made the Ruby one any simpler:</p>
 
@@ -129,132 +126,46 @@
 
 <p>Well, there you have it. Two cool ways to send information in Ruby. I recommend playing around with both of these, as they are both easy to setup and will quickly open up a lot of real-life applications to many of the things we have been learning. Have fun!</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/05/various-scraps-of-knowledge/">Various Scraps of Knowledge</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-05T09:26:25-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:26 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Welcome to my first post (well, the first one with any substance). Being in the beginning stages of my learning, I don&rsquo;t really expect my early posts to add much (if anything at all) to the greater world of programming, but my hope is that at least my fellow learners here at Flatiron will be able to extract some value from here.</p>
-
-<p>For this one, I decided to share a couple of interesting tidbits that I came accross over the past week.</p>
-
-<h1><strong>1. The Flip Flop Operator</strong></h1>
-
-<p>A lot of people don&rsquo;t seem to like this one due to its &ldquo;Perlness&rdquo; and apparent lack of obvious practical application, but I thought it was interesting nonetheless. By putting a range operator (..) between two conditions in a conditional statement, it will evaluate as false until the first condition evaluates as true. It will then evaluate as true until the second condition evaluates to true. Everything afterwards will then evaluate as false until the first conditional statement is true again. Take the below example:</p>
-
-<p><img src="../images/100515/flip_flop.png" alt="alt text" /></p>
-
-<p>While iterating through the array of animals, each animal is evaluated as false until we hit &ldquo;dog&rdquo; from the first conditional statement. Every animal after that evaluates as true until the second conditional statement, &ldquo;cat&rdquo;, is evaluated to be true, after which all animals afterwards will evaluate as false.</p>
-
-<p>Some people seem to have found utility in this when looking for content between markers in regexes. Again, most Rubysists seem to dislike this one, but at the very least it is probably worth being familiar wtih it in case you ever see it in someone else&rsquo;s code.</p>
-
-<h1><strong>2. Rescue Me</strong></h1>
-
-<p>Try and execute the following code:</p>
-
-<p>x = 1/0</p>
-
-<p><img src="../images/100515/divide_by_zero.png" alt="alt text" /></p>
-
-<p>As you may have guessed, you are going to get a divided by zero error. Try do this instead:</p>
-
-<p>x = 1/0 rescue nil</p>
-
-<p><img src="../images/100515/divide_by_zero3.png" alt="alt text" /></p>
-
-<p>Rescue does exactly what it implies, it &ldquo;rescues&rdquo; your code from any errors and returns whatever you designate. In this example, instead of throwing an error, rescue jumps in, ignores the exception, and evaluates whatever is declared afterwards, in this case nil. A lot people highly advise against using this as any exception can and will cause the rescue operation to execute, which can make debugging issues a very painful affair (and it is not hard to see how this could cause some serious unintended consequences). Still, a neat little something to at least be aware of.</p>
-
-<p><img src="../images/100515/divide_by_zero2.png" alt="alt text" /></p>
-
-<h1><strong>3. To Infinity, and Beyond</strong></h1>
-
-<p>Try entering either of the below into IRB:</p>
-
-<p>1/0.0</p>
-
-<p>or</p>
-
-<p>1.0/0</p>
-
-<p><img src="../images/100515/infinity3.png" alt="alt text" /></p>
-
-<p>But wait, divide by 0 didn&rsquo;t work before in the above example, why is it working now? As per the IEEE Standard for Floating-Point Arithmetic (IEEE 754), it works when we perform the operation with floats instead of fixnums. This allows us to create ranges to represent unbounded values.</p>
-
-<p>Infinity = 1/0.0</p>
-
-<p>all_positives = 0..Infinity</p>
-
-<p>all_negatives = -Infinity&hellip;0</p>
-
-<p>everything = -Infinity..Infinity</p>
-
-<p><img src="../images/100515/infinity.png" alt="alt text" /></p>
-
-<p>You can then use methods like take, step, first to manipulate the size and sample of what you want to use from the range. You can also use it with several enumerable methods by chaining <a href="http://ruby-doc.org/core-2.0.0/Enumerator/Lazy.html" title="Enumerable::Lazy">&ldquo;Enumerable::Lazy&rdquo;</a>, which was introduced in Ruby 2.0. &ldquo;In programming language theory, lazy evaluation, or call-by-need is an evaluation strategy which delays the evaluation of an expression until its value is needed (non-strict evaluation) and which also avoids repeated evaluations.&rdquo; <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">&ldquo;Lazy Evaluation - From Wikipedia&rdquo;</a></p>
-</div>
-  
   
 
+<span class="byline author vcard">Posted by <span class="fn">Korey Aaronson</span></span>
 
-    </article>
-  
-  
-    <article>
       
-  <header>
+
+
+
+
+<time class='entry-date' datetime='2015-10-21T08:10:37-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>8:10 am</span></time>
+      
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2015/09/28/my-first-post-on-octopress/">My First Post on Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-28T17:48:07-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:48 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>&ldquo;Hello, World.&rdquo;</p>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information/" data-via="" data-counturl="http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/10/05/various-scraps-of-knowledge/" title="Previous Post: Various scraps of knowledge">&laquo; Various scraps of knowledge</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -282,6 +193,7 @@
 
   
 </aside>
+
 
     </div>
   </div>

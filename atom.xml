@@ -4,7 +4,7 @@
   <title><![CDATA[Jedi Mind Tricks]]></title>
   <link href="http://sarkk.github.io/atom.xml" rel="self"/>
   <link href="http://sarkk.github.io/"/>
-  <updated>2015-10-05T15:52:31-04:00</updated>
+  <updated>2015-10-21T08:45:38-04:00</updated>
   <id>http://sarkk.github.io/</id>
   <author>
     <name><![CDATA[Korey Aaronson]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[New Ways to Consume Information]]></title>
+    <link href="http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information/"/>
+    <updated>2015-10-21T08:10:37-04:00</updated>
+    <id>http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information</id>
+    <content type="html"><![CDATA[<p>After using puts to no end, I was curious to see what interesting (and practical) ways there are out there to output and consume information in Ruby. Inspired by a project idea from Avi, I looked into Twilio, a company that &ldquo;allows software developers to programmatically make and receive phone calls and send and receive text messages using its web service APIs&rdquo;. (Wikipedia)</p>
+
+<p>After signing up for an account and trial phone number on their website, it was easy to find documentation for their different APIs. I don&rsquo;t think they could have made the Ruby one any simpler:</p>
+
+<p><img src="../images/102015/twilio.png" alt="alt text" /></p>
+
+<p>I divided this into 2 methods and wrapped a class around it so that I could pass the message through.</p>
+
+<p><img src="../images/102015/twilio2.png" alt="alt text" /></p>
+
+<p>I was kind of amazed to see it work right away.</p>
+
+<p>After sending a few texts, however, I noticed I had begun incurring a charge on my Twilio account for each one.</p>
+
+<p><img src="../images/102015/twilio3.png" alt="alt text" /></p>
+
+<p>Paranoid that I was going to rack up a bill, forget about it, and end up with collections chasing after me for a few pennies, I reached out to Twilio support to figure out how I could pay the balance (there was no obvious way to do so on the website). While I was waiting for a response, I was pondering other possible delivery methods. What about email?</p>
+
+<p>After some Googling, I found a quick and easy solution. Armed with a new Gmail account for testing, I took what I found and wrapped everything in a class with a send_mail method (this should probably be split up into more methods but I wanted to get it working):</p>
+
+<p><img src="../images/102015/gmail.png" alt="alt text" /></p>
+
+<p>Again, I was half surprised to see that it worked right away. Much to the dismay of several of our fellow students, I immediately began to spam some of them with email blasts containing various facts about sloths.</p>
+
+<p>Shortly after implementing the mailer, Twilio&rsquo;s response came:</p>
+
+<blockquote><p>Hello korey,</p>
+
+<p>Thank you for reaching out! With a trial account we give you about roughly $30 of real credit to test with, but we do not expose balance in the UI until you upgrade.</p>
+
+<p>Looks like you have about $28.00 left or so, until you would need to upgrade. We will notify you when your balance is getting low.</p>
+
+<p>I hope that this information is helpful. Let me know if you have further questions</p>
+
+<p>Regards,</p>
+
+<p>Twilio Customer Support</p></blockquote>
+
+<p>So you don&rsquo;t need to worry about getting charged on a trial account until you hit about $30.</p>
+
+<p>Well, there you have it. Two cool ways to send information in Ruby. I recommend playing around with both of these, as they are both easy to setup and will quickly open up a lot of real-life applications to many of the things we have been learning. Have fun!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Various Scraps of Knowledge]]></title>
