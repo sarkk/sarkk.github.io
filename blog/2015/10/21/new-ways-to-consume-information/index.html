@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>New Ways to Consume Information - Jedi Mind Tricks</title>
+  <meta name="author" content="Korey Aaronson">
+
+  
+  <meta name="description" content="After using puts to no end, I was curious to see what interesting (and practical) ways there are out there to output and consume information in Ruby &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jedi Mind Tricks" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jedi Mind Tricks</a></h1>
+  
+    <h2>This is not the blog you are looking for...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="sarkk.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">New Ways to Consume Information</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-21T08:10:37-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>8:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After using puts to no end, I was curious to see what interesting (and practical) ways there are out there to output and consume information in Ruby. Inspired by a project idea from Avi, I looked into Twilio, a company that &ldquo;allows software developers to programmatically make and receive phone calls and send and receive text messages using its web service APIs&rdquo;. (Wikipedia)</p>
+
+<p>After signing up for an account and trial phone number on their website, it was easy to find documentation for their different APIs. I don&rsquo;t think they could have made the Ruby one any simpler:</p>
+
+<p><img src="../images/102015/twilio.png" alt="alt text" /></p>
+
+<p>I divided this into 2 methods and wrapped a class around it so that I could pass the message through.</p>
+
+<p><img src="../images/102015/twilio-2.png" alt="alt text" /></p>
+
+<p>I was kind of amazed to see it work right away.</p>
+
+<p>After sending a few texts, however, I noticed I had begun incurring a charge on my Twilio account for each one.</p>
+
+<p><img src="../images/102015/twilio3.png" alt="alt text" /></p>
+
+<p>Paranoid that I was going to rack up a bill, forget about it, and end up with collections chasing after me for a few pennies, I reached out to Twilio support to figure out how I could pay the balance (there was no obvious way to do so on the website). While I was waiting for a response, I was pondering other possible delivery methods. What about email?</p>
+
+<p>After some Googling, I found a quick and easy solution. Armed with a new Gmail account for testing, I took what I found and wrapped everything in a class with a send_mail method (this should probably be split up into more methods but I wanted to get it working):</p>
+
+<p><img src="../images/102015/gmail.png" alt="alt text" /></p>
+
+<p>Again, I was half surprised to see that it worked right away. Much to the dismay of several of our fellow students, I immediately began to spam some of them with email blasts containing various facts about sloths.</p>
+
+<p>Shortly after implementing the mailer, Twilio&rsquo;s response came:</p>
+
+<blockquote><p>Hello korey,</p>
+
+<p>Thank you for reaching out! With a trial account we give you about roughly $30 of real credit to test with, but we do not expose balance in the UI until you upgrade.</p>
+
+<p>Looks like you have about $28.00 left or so, until you would need to upgrade. We will notify you when your balance is getting low.</p>
+
+<p>I hope that this information is helpful. Let me know if you have further questions</p>
+
+<p>Regards,</p>
+
+<p>Twilio Customer Support</p></blockquote>
+
+<p>So you don&rsquo;t need to worry about getting charged on a trial account until you hit about $30.</p>
+
+<p>Well, there you have it. Two cool ways to send information in Ruby. I recommend playing around with both of these, as they are both easy to setup and will quickly open up a lot of real-life applications to many of the things we have been learning. Have fun!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Korey Aaronson</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-10-21T08:10:37-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>8:10 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information/" data-via="" data-counturl="http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/10/05/various-scraps-of-knowledge/" title="Previous Post: Various scraps of knowledge">&laquo; Various scraps of knowledge</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/21/new-ways-to-consume-information/">New Ways to Consume Information</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/05/various-scraps-of-knowledge/">Various Scraps of Knowledge</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/28/my-first-post-on-octopress/">My First Post on Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Korey Aaronson -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
