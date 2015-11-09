@@ -9,7 +9,7 @@
   <meta name="author" content="Korey Aaronson">
 
   
-  <meta name="description" content="After using puts to no end, I was curious to see what interesting (and practical) ways there are out there to output and consume information in Ruby &hellip;">
+  <meta name="description" content="I was doing some reading on different programming languages, and I wondered to myself, what is the smallest programming language out there? After a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +71,316 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/11/08/brainf-star-ck/">Brainfuck</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-08T23:26:01-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:26 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was doing some reading on different programming languages, and I wondered to myself, what is the smallest programming language out there? After a quick search, I came accross the esoteric programming language that is Brainfuck.</p>
+
+<p>Brainfuck was created by this guy (Urban Müller) in 1993 (coincidentally the same year that Matz created Ruby):</p>
+
+<p><img src="/images/110815/urban.jpg" alt="Urban Müller" /></p>
+
+<p>The language is limited to just 8 (!) commands. The compiler Müller built was a mere 240 bytes in size, and apparently people have succeeded in building a compiler that is under 200 bytes.</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center;"><strong>Character</strong></th>
+<th style="text-align:center;"><strong>Meaning</strong></th>
+<th style="text-align:center;"><strong>C Equiv</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;"> >       </td>
+<td style="text-align:center;">increment the data pointer (to point to the next cell to the right).</td>
+<td style="text-align:center;">++p;</td>
+</tr>
+<tr>
+<td style="text-align:center;"> &lt;       </td>
+<td style="text-align:center;">decrement the data pointer (to point to the next cell to the left).</td>
+<td style="text-align:center;">&ndash;p;</td>
+</tr>
+<tr>
+<td style="text-align:center;"> +       </td>
+<td style="text-align:center;">increment (increase by one) the byte at the data pointer.</td>
+<td style="text-align:center;">++*p;</td>
+</tr>
+<tr>
+<td style="text-align:center;"> -       </td>
+<td style="text-align:center;">decrement (decrease by one) the byte at the data pointer.</td>
+<td style="text-align:center;">&ndash;*p;</td>
+</tr>
+<tr>
+<td style="text-align:center;"> .       </td>
+<td style="text-align:center;">output the byte at the data pointer.</td>
+<td style="text-align:center;">putchar(p);</td>
+</tr>
+<tr>
+<td style="text-align:center;"> ,       </td>
+<td style="text-align:center;">accept one byte of input, storing its value in the byte at the data pointer.</td>
+<td style="text-align:center;">*p=getchar();</td>
+</tr>
+<tr>
+<td style="text-align:center;"> [       </td>
+<td style="text-align:center;">if the byte at the data pointer is zero, then instead of moving the instruction pointer forward to the next command, jump it forward to the command after the matching ] command.</td>
+<td style="text-align:center;">while(*p) {</td>
+</tr>
+<tr>
+<td style="text-align:center;"> ]       </td>
+<td style="text-align:center;">if the byte at the data pointer is nonzero, then instead of moving the instruction pointer forward to the next command, jump it back to the command after the matching [ command.</td>
+<td style="text-align:center;">}</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>.</p>
+
+<p>Being unfamiliar with C, I didn&rsquo;t know what pointers were. Bill Karwin gives a good explanation on his blog <a href="http://karwin.blogspot.com/2012/11/c-pointers-explained-really.html">here</a>. Pointers basically allow a programmer to  access memory directly. From Wikipedia:</p>
+
+<blockquote><p>A pointer is a programming language object, whose value refers to (or &ldquo;points to&rdquo;) another value stored elsewhere in the computer memory using its address. A pointer references a location in memory, and obtaining the value stored at that location is known as dereferencing the pointer. As an analogy, a page number in a book&rsquo;s index could be considered a pointer to the corresponding page; dereferencing such a pointer would be done by flipping to the page with the given page number.</p></blockquote>
+
+<p>So Brainfuck uses an array of at least 30,000 byte-sized cells initialized to zero and uses a movable data pointer to reference these cells.</p>
+
+<p>Here is what &ldquo;Hello World!&rdquo; looks like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>++++++++++[&gt;+++++++&gt;++++++++++&gt;+++&gt;+&lt;&lt;&lt;&lt;-] &gt;++.&gt;+.+++++++..+++.&gt;++.&lt;&lt;+++++++++++++++.&gt;.+++.------.--------.&gt;+.&gt;.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here it is with some comments to get a better understanding of what is going on:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[ This program prints "Hello World!" and a newline to the screen, its
+</span><span class='line'>  length is 106 active command characters. [It is not the shortest.]
+</span><span class='line'>
+</span><span class='line'>  This loop is a "comment loop", a simple way of adding a comment
+</span><span class='line'>  to a BF program such that you don't have to worry about any command
+</span><span class='line'>  characters. Any ".", ",", "+", "-", "&lt;" and "&gt;" characters are simply
+</span><span class='line'>  ignored, the "[" and "]" characters just have to be balanced. This
+</span><span class='line'>  loop and the commands it contains are ignored because the current cell
+</span><span class='line'>  defaults to a value of 0; the 0 value causes this loop to be skipped.
+</span><span class='line'>]
+</span><span class='line'>
+</span><span class='line'> +++++ +++++            initialize counter (cell #0) to 10
+</span><span class='line'>[                       set the next four cells to 70, 100, 30 and 10
+</span><span class='line'>  &gt; +++++ ++            add  7 to cell #1
+</span><span class='line'>  &gt; +++++ +++++         add 10 to cell #2
+</span><span class='line'>  &gt; +++                 add  3 to cell #3
+</span><span class='line'>  &gt; +                   add  1 to cell #4
+</span><span class='line'>  &lt;&lt;&lt;&lt; -                decrement counter (cell #0)
+</span><span class='line'>]                 
+</span><span class='line'>
+</span><span class='line'>The result of this is:
+</span><span class='line'>Cell No :   0   1   2   3   4
+</span><span class='line'>Contents:   0   70  100 30  10
+</span><span class='line'>Pointer :   ^
+</span><span class='line'>
+</span><span class='line'>&gt; ++ .                print 'H'  (H = ASC (72))
+</span><span class='line'>&gt; + .                 print 'e'  (e = ASC (101))
+</span><span class='line'>+++++ ++ .            print 'l'  (l = ASC (108))
+</span><span class='line'>.                     print 'l'  (l = ASC (108))
+</span><span class='line'>+++ .                 print 'o'  (o = ASC (111))
+</span><span class='line'>
+</span><span class='line'>&gt; ++ .                print ' '   ( = ASC (32))
+</span><span class='line'>
+</span><span class='line'>&lt;&lt; +++++ +++++ +++++ .  print 'W' (W = ASC (87))
+</span><span class='line'>&gt; .                   print 'o'   (o = ASC (111))
+</span><span class='line'>+++ .                 print 'r'   (r = ASC (114))
+</span><span class='line'>----- - .             print 'l'   (l = ASC (108))
+</span><span class='line'>----- --- .           print 'd'   (d = ASC (100))
+</span><span class='line'>&gt; + .                 print '!'   (! = ASC (33))
+</span><span class='line'>&gt; .                   print '\n'  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>There is a great walkthrough of the code in a source I found called <a href="https://docs.google.com/document/d/1M51AYmDR1Q9UBsoTrGysvuzar2_Hx69Hz14tsQXWV6M/edit#">Brainfuck for Dummies</a> (no author given on the document):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>The program starts at the first command and also at the first memory location, which will be called a[0]. The next memory location will be called a[1], the one after that a[2], etc. 
+</span><span class='line'>As you may recall, all memory cells have the value zero at the start of the program.
+</span><span class='line'>
+</span><span class='line'>1. The first line sets a[0] to 10 by simply incrementing the contents of the cell ten times.
+</span><span class='line'>
+</span><span class='line'>2. On the 2nd line the [ character starts a loop. The loop would end immediately if the value of the current memory cell was zero. The value is ten, so the program continues.
+</span><span class='line'>
+</span><span class='line'>3. The loop sets the values for the four cells: 
+</span><span class='line'>a[1] = 70 (close to 72, the ASCII code for the character 'H'), 
+</span><span class='line'>a[2] = 100 (close to 101 or 'e'), 
+</span><span class='line'>a[3] = 30 (close to 32, the code for space) and 
+</span><span class='line'>a[4] = 10 (newline). 
+</span><span class='line'>
+</span><span class='line'>4. Each pass of the loop, the following things happen:
+</span><span class='line'>First the cursor is moved one place to the right (a[1]).
+</span><span class='line'>Then the value of the current cell (a[1]) is incremented by seven.
+</span><span class='line'>a[2] is incremented by ten
+</span><span class='line'>a[3] is incremented by three and lastly
+</span><span class='line'>a[4] is incremented by one.
+</span><span class='line'>
+</span><span class='line'>5. The seventh line moves the cursor all the way back to the first position a[0] and then decreases the value of this cell by one. Thus the loop will be executed ten times[5]. After the loop is finished, a[0] is zero.
+</span><span class='line'>
+</span><span class='line'>6. &gt;++. then moves the pointer to a[1] which holds 70, adds two to it (72 is the ASCII character code of a capital H), and outputs it with the "." command.
+</span><span class='line'>
+</span><span class='line'>7. The next line moves the array pointer to a[2] and adds one to it, producing 101, a lower-case 'e', which is then output.
+</span><span class='line'>
+</span><span class='line'>8. Since 'l' is the seventh letter after 'e', to output 'll' another seven are added (+++++++) to a[2] and the result is output twice.
+</span><span class='line'>
+</span><span class='line'>9. 'o' is the third letter after 'l', so a[2] is incremented three more times. Then the contents of the cell is written to the screen.
+</span><span class='line'>
+</span><span class='line'>10. For the space and capital letters, different array cells are selected and incremented or decremented as needed.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ASCII table for reference:</p>
+
+<p><img src="/images/110815/ascii.png" alt="ASCII table" /></p>
+
+<p>Brainfuck is a Turing-complete language, meaning it theoretically can solve any computational problem (with enough time and memory), although why anyone would want to use it for anything but amusement is beyond me. It seems to have been based off of a predecessor called P'&lsquo;, created by Corrado Böhm in 1964, which uses the equivalent of 6 Brainfuck characters (no input or output).</p>
+
+<p>There are quite a few other esoteric languages out there; languages that were created without real practical purpose, usually as a joke. Malbolge, for example, was designed to be as difficult to program in as possible. Ook! is a variation of Brainfuck meant for Orangutangs where all of Brainfuck&rsquo;s 8 characters have been replaced with some combination of &ldquo;Ook!&rdquo;, &ldquo;Ook?&rdquo;, and &ldquo;Ook.&rdquo;. Here is &ldquo;Hello World!&rdquo;:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook. Ook. Ook! Ook? Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook! Ook! Ook? Ook! Ook? Ook.
+</span><span class='line'> Ook! Ook. Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook! Ook? Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook?
+</span><span class='line'> Ook! Ook! Ook? Ook! Ook? Ook. Ook. Ook. Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook! Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook! Ook. Ook. Ook? Ook. Ook? Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook? Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook! Ook! Ook? Ook! Ook? Ook. Ook! Ook.
+</span><span class='line'> Ook. Ook? Ook. Ook? Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook? Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook. Ook? Ook! Ook! Ook? Ook! Ook? Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook.
+</span><span class='line'> Ook? Ook. Ook? Ook. Ook? Ook. Ook? Ook. Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook.
+</span><span class='line'> Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook.
+</span><span class='line'> Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook!
+</span><span class='line'> Ook! Ook. Ook. Ook? Ook. Ook? Ook. Ook. Ook! Ook.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Another one, ArnoldC, replaces all basic keywords with quotes from different Arnold Schwarzenegger movies. &ldquo;Hello World!&rdquo;, for example:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>IT'S SHOWTIME
+</span><span class='line'>TALK TO THE HAND "hello world"
+</span><span class='line'>YOU HAVE BEEN TERMINATED</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Check <a href="https://en.wikipedia.org/wiki/Esoteric_programming_language">Wikipedia</a> or <a href="http://esolangs.org/wiki/Main_Page">Esolang</a> for some other fun esoteric languages.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/10/21/new-ways-to-consume-information/">New Ways to Consume Information</a></h1>
     
     
@@ -95,7 +405,7 @@
 
 <p>I divided this into 2 methods and wrapped a class around it so that I could pass the message through.</p>
 
-<p><img src="../images/102015/twilio2.png" alt="alt text" /></p>
+<p><img src="../images/102015/twilio-2.png" alt="alt text" /></p>
 
 <p>I was kind of amazed to see it work right away.</p>
 
@@ -260,6 +570,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/11/08/brainf-star-ck/">Brainfuck</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/10/21/new-ways-to-consume-information/">New Ways to Consume Information</a>

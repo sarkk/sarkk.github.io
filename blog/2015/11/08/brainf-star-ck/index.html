@@ -1,28 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Jedi Mind Tricks]]></title>
-  <link href="http://sarkk.github.io/atom.xml" rel="self"/>
-  <link href="http://sarkk.github.io/"/>
-  <updated>2015-11-09T09:30:01-05:00</updated>
-  <id>http://sarkk.github.io/</id>
-  <author>
-    <name><![CDATA[Korey Aaronson]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Brainfuck - Jedi Mind Tricks</title>
+  <meta name="author" content="Korey Aaronson">
 
   
-  <entry>
-    <title type="html"><![CDATA[Brainfuck]]></title>
-    <link href="http://sarkk.github.io/blog/2015/11/08/brainf-star-ck/"/>
-    <updated>2015-11-08T23:26:01-05:00</updated>
-    <id>http://sarkk.github.io/blog/2015/11/08/brainf-star-ck</id>
-    <content type="html"><![CDATA[<p>I was doing some reading on different programming languages, and I wondered to myself, what is the smallest programming language out there? After a quick search, I came accross the esoteric programming language that is Brainfuck.</p>
+  <meta name="description" content="I was doing some reading on different programming languages, and I wondered to myself, what is the smallest programming language out there? After a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sarkk.github.io/blog/2015/11/08/brainf-star-ck/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jedi Mind Tricks" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jedi Mind Tricks</a></h1>
+  
+    <h2>This is not the blog you are looking for...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="sarkk.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Brainfuck</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-08T23:26:01-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:26 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I was doing some reading on different programming languages, and I wondered to myself, what is the smallest programming language out there? After a quick search, I came accross the esoteric programming language that is Brainfuck.</p>
 
 <p>Brainfuck was created by this guy (Urban Müller) in 1993 (coincidentally the same year that Matz created Ruby):</p>
 
-<p><img src="http://sarkk.github.io/images/110815/urban.jpg" alt="Urban Müller" /></p>
+<p><img src="/images/110815/urban.jpg" alt="Urban Müller" /></p>
 
 <p>The language is limited to just 8 (!) commands. The compiler Müller built was a mere 240 bytes in size, and apparently people have succeeded in building a compiler that is under 200 bytes.</p>
 
@@ -245,7 +311,7 @@
 
 <p>ASCII table for reference:</p>
 
-<p><img src="http://sarkk.github.io/images/110815/ascii.png" alt="ASCII table" /></p>
+<p><img src="/images/110815/ascii.png" alt="ASCII table" /></p>
 
 <p>Brainfuck is a Turing-complete language, meaning it theoretically can solve any computational problem (with enough time and memory), although why anyone would want to use it for anything but amusement is beyond me. It seems to have been based off of a predecessor called P'&lsquo;, created by Corrado Böhm in 1964, which uses the equivalent of 6 Brainfuck characters (no input or output).</p>
 
@@ -300,130 +366,109 @@
 
 
 <p>Check <a href="https://en.wikipedia.org/wiki/Esoteric_programming_language">Wikipedia</a> or <a href="http://esolangs.org/wiki/Main_Page">Esolang</a> for some other fun esoteric languages.</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[New Ways to Consume Information]]></title>
-    <link href="http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information/"/>
-    <updated>2015-10-21T08:10:37-04:00</updated>
-    <id>http://sarkk.github.io/blog/2015/10/21/new-ways-to-consume-information</id>
-    <content type="html"><![CDATA[<p>After using puts to no end, I was curious to see what interesting (and practical) ways there are out there to output and consume information in Ruby. Inspired by a project idea from Avi, I looked into Twilio, a company that &ldquo;allows software developers to programmatically make and receive phone calls and send and receive text messages using its web service APIs&rdquo;. (Wikipedia)</p>
 
-<p>After signing up for an account and trial phone number on their website, it was easy to find documentation for their different APIs. I don&rsquo;t think they could have made the Ruby one any simpler:</p>
+<span class="byline author vcard">Posted by <span class="fn">Korey Aaronson</span></span>
 
-<p><img src="../images/102015/twilio.png" alt="alt text" /></p>
+      
 
-<p>I divided this into 2 methods and wrapped a class around it so that I could pass the message through.</p>
 
-<p><img src="../images/102015/twilio-2.png" alt="alt text" /></p>
 
-<p>I was kind of amazed to see it work right away.</p>
 
-<p>After sending a few texts, however, I noticed I had begun incurring a charge on my Twilio account for each one.</p>
+<time class='entry-date' datetime='2015-11-08T23:26:01-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:26 pm</span></time>
+      
 
-<p><img src="../images/102015/twilio3.png" alt="alt text" /></p>
 
-<p>Paranoid that I was going to rack up a bill, forget about it, and end up with collections chasing after me for a few pennies, I reached out to Twilio support to figure out how I could pay the balance (there was no obvious way to do so on the website). While I was waiting for a response, I was pondering other possible delivery methods. What about email?</p>
-
-<p>After some Googling, I found a quick and easy solution. Armed with a new Gmail account for testing, I took what I found and wrapped everything in a class with a send_mail method (this should probably be split up into more methods but I wanted to get it working):</p>
-
-<p><img src="../images/102015/gmail.png" alt="alt text" /></p>
-
-<p>Again, I was half surprised to see that it worked right away. Much to the dismay of several of our fellow students, I immediately began to spam some of them with email blasts containing various facts about sloths.</p>
-
-<p>Shortly after implementing the mailer, Twilio&rsquo;s response came:</p>
-
-<blockquote><p>Hello korey,</p>
-
-<p>Thank you for reaching out! With a trial account we give you about roughly $30 of real credit to test with, but we do not expose balance in the UI until you upgrade.</p>
-
-<p>Looks like you have about $28.00 left or so, until you would need to upgrade. We will notify you when your balance is getting low.</p>
-
-<p>I hope that this information is helpful. Let me know if you have further questions</p>
-
-<p>Regards,</p>
-
-<p>Twilio Customer Support</p></blockquote>
-
-<p>So you don&rsquo;t need to worry about getting charged on a trial account until you hit about $30.</p>
-
-<p>Well, there you have it. Two cool ways to send information in Ruby. I recommend playing around with both of these, as they are both easy to setup and will quickly open up a lot of real-life applications to many of the things we have been learning. Have fun!</p>
-]]></content>
-  </entry>
+    </p>
+    
+      <div class="sharing">
   
-  <entry>
-    <title type="html"><![CDATA[Various Scraps of Knowledge]]></title>
-    <link href="http://sarkk.github.io/blog/2015/10/05/various-scraps-of-knowledge/"/>
-    <updated>2015-10-05T09:26:25-04:00</updated>
-    <id>http://sarkk.github.io/blog/2015/10/05/various-scraps-of-knowledge</id>
-    <content type="html"><![CDATA[<p>Welcome to my first post (well, the first one with any substance). Being in the beginning stages of my learning, I don&rsquo;t really expect my early posts to add much (if anything at all) to the greater world of programming, but my hope is that at least my fellow learners here at Flatiron will be able to extract some value from here.</p>
-
-<p>For this one, I decided to share a couple of interesting tidbits that I came accross over the past week.</p>
-
-<h1><strong>1. The Flip Flop Operator</strong></h1>
-
-<p>A lot of people don&rsquo;t seem to like this one due to its &ldquo;Perlness&rdquo; and apparent lack of obvious practical application, but I thought it was interesting nonetheless. By putting a range operator (..) between two conditions in a conditional statement, it will evaluate as false until the first condition evaluates as true. It will then evaluate as true until the second condition evaluates to true. Everything afterwards will then evaluate as false until the first conditional statement is true again. Take the below example:</p>
-
-<p><img src="../images/100515/flip_flop.png" alt="alt text" /></p>
-
-<p>While iterating through the array of animals, each animal is evaluated as false until we hit &ldquo;dog&rdquo; from the first conditional statement. Every animal after that evaluates as true until the second conditional statement, &ldquo;cat&rdquo;, is evaluated to be true, after which all animals afterwards will evaluate as false.</p>
-
-<p>Some people seem to have found utility in this when looking for content between markers in regexes. Again, most Rubysists seem to dislike this one, but at the very least it is probably worth being familiar wtih it in case you ever see it in someone else&rsquo;s code.</p>
-
-<h1><strong>2. Rescue Me</strong></h1>
-
-<p>Try and execute the following code:</p>
-
-<p>x = 1/0</p>
-
-<p><img src="../images/100515/divide_by_zero.png" alt="alt text" /></p>
-
-<p>As you may have guessed, you are going to get a divided by zero error. Try do this instead:</p>
-
-<p>x = 1/0 rescue nil</p>
-
-<p><img src="../images/100515/divide_by_zero3.png" alt="alt text" /></p>
-
-<p>Rescue does exactly what it implies, it &ldquo;rescues&rdquo; your code from any errors and returns whatever you designate. In this example, instead of throwing an error, rescue jumps in, ignores the exception, and evaluates whatever is declared afterwards, in this case nil. A lot people highly advise against using this as any exception can and will cause the rescue operation to execute, which can make debugging issues a very painful affair (and it is not hard to see how this could cause some serious unintended consequences). Still, a neat little something to at least be aware of.</p>
-
-<p><img src="../images/100515/divide_by_zero2.png" alt="alt text" /></p>
-
-<h1><strong>3. To Infinity, and Beyond</strong></h1>
-
-<p>Try entering either of the below into IRB:</p>
-
-<p>1/0.0</p>
-
-<p>or</p>
-
-<p>1.0/0</p>
-
-<p><img src="../images/100515/infinity3.png" alt="alt text" /></p>
-
-<p>But wait, divide by 0 didn&rsquo;t work before in the above example, why is it working now? As per the IEEE Standard for Floating-Point Arithmetic (IEEE 754), it works when we perform the operation with floats instead of fixnums. This allows us to create ranges to represent unbounded values.</p>
-
-<p>Infinity = 1/0.0</p>
-
-<p>all_positives = 0..Infinity</p>
-
-<p>all_negatives = -Infinity&hellip;0</p>
-
-<p>everything = -Infinity..Infinity</p>
-
-<p><img src="../images/100515/infinity.png" alt="alt text" /></p>
-
-<p>You can then use methods like take, step, first to manipulate the size and sample of what you want to use from the range. You can also use it with several enumerable methods by chaining <a href="http://ruby-doc.org/core-2.0.0/Enumerator/Lazy.html" title="Enumerable::Lazy">&ldquo;Enumerable::Lazy&rdquo;</a>, which was introduced in Ruby 2.0. &ldquo;In programming language theory, lazy evaluation, or call-by-need is an evaluation strategy which delays the evaluation of an expression until its value is needed (non-strict evaluation) and which also avoids repeated evaluations.&rdquo; <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">&ldquo;Lazy Evaluation - From Wikipedia&rdquo;</a></p>
-]]></content>
-  </entry>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://sarkk.github.io/blog/2015/11/08/brainf-star-ck/" data-via="" data-counturl="http://sarkk.github.io/blog/2015/11/08/brainf-star-ck/" >Tweet</a>
   
-  <entry>
-    <title type="html"><![CDATA[My First Post on Octopress]]></title>
-    <link href="http://sarkk.github.io/blog/2015/09/28/my-first-post-on-octopress/"/>
-    <updated>2015-09-28T17:48:07-04:00</updated>
-    <id>http://sarkk.github.io/blog/2015/09/28/my-first-post-on-octopress</id>
-    <content type="html"><![CDATA[<p>&ldquo;Hello, World.&rdquo;</p>
-]]></content>
-  </entry>
   
-</feed>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/10/21/new-ways-to-consume-information/" title="Previous Post: New ways to consume information">&laquo; New ways to consume information</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/11/08/brainf-star-ck/">Brainfuck</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/21/new-ways-to-consume-information/">New Ways to Consume Information</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/05/various-scraps-of-knowledge/">Various Scraps of Knowledge</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/09/28/my-first-post-on-octopress/">My First Post on Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Korey Aaronson -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
